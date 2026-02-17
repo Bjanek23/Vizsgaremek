@@ -1,0 +1,11 @@
+VLAN,
+STP + Etherchannel
+OSPF + HSRP
+ipv4, ipv6
+DHCPv4 DHCPV6
+Firewall konfiguralas
+wireless router konfiguralasa
+WAN konfiguralas
+NAT,PAT
+VPN
+ACL
