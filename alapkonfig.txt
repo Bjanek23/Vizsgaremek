@@ -1,0 +1,232 @@
+1. Könyvelési Switch (KNYV-SW)
+
+enable
+conf t
+hostname KNYV-SW
+no ip domain-lookup
+ip domain-name horizonbank.hu
+banner motd # Az illetektelen hozzaferes TILOS! #
+security passwords min-length 8
+clock timezone CET 1
+service password-encryption
+enable secret K0nyv3lesPR1v1
+line con 0
+ password K0nyv3lesF3LH4SZ
+ login
+ exec-timeout 5 0
+ logging synchronous
+exit
+line vty 0 15
+ password K0nYv3lTelN3T
+ login
+ exec-timeout 5 0
+ logging synchronous
+ transport input ssh
+exit
+exit
+wr
+
+
+2. Dolgozói Switch (DOLG-SW)
+
+enable
+conf t
+hostname DOLG-SW
+no ip domain-lookup
+ip domain-name horizonbank.hu
+banner motd # Az illetektelen hozzaferes TILOS! #
+security passwords min-length 8
+clock timezone CET 1
+service password-encryption
+enable secret D0lgPR1vPa55
+line con 0
+ password doLg0z0iK0nj3l5z
+ login
+ exec-timeout 5 0
+ logging synchronous
+exit
+line vty 0 15
+ password D0lgVtyT3ln3tP455W
+ login
+ exec-timeout 5 0
+ logging synchronous
+ transport input ssh
+exit
+exit
+wr
+
+
+3. Igazgatósági Switch (IGT-SW)
+
+enable
+conf t
+hostname IGT-SW
+no ip domain-lookup
+ip domain-name horizonbank.hu
+banner motd # Az illetektelen hozzaferes TILOS! #
+security passwords min-length 8
+clock timezone CET 1
+service password-encryption
+enable secret IgTPr1vM0d
+line con 0
+ password IGT_K0nz0l_h4SZ
+ login
+ exec-timeout 5 0
+ logging synchronous
+exit
+line vty 0 15
+ password IGTvtyL1n3
+ login
+ exec-timeout 5 0
+ logging synchronous
+ transport input ssh
+exit
+exit
+wr
+
+
+4. Gerinc Switch (BP-SW)
+
+enable
+conf t
+hostname BP-SW
+no ip domain-lookup
+ip domain-name horizonbank.hu
+banner motd # Az illetektelen hozzaferes TILOS! #
+security passwords min-length 8
+clock timezone CET 1
+service password-encryption
+enable secret BuPe_sWEnabl3
+line con 0
+ password BPSw1tcs_k0Nz0L
+ login
+ exec-timeout 5 0
+ logging synchronous
+exit
+line vty 0 15
+ password Bpe5tVtY_T3ln
+ login
+ exec-timeout 5 0
+ logging synchronous
+ transport input ssh
+exit
+exit
+wr
+
+
+
+5. Helyi Switch (DEB-SW)
+
+enable
+conf t
+hostname DEB-SW
+no ip domain-lookup
+ip domain-name horizonbank.hu
+banner motd # Az illetektelen hozzaferes TILOS! #
+security passwords min-length 8
+clock timezone CET 1
+service password-encryption
+enable secret D3b_Sw_PR1v
+line con 0
+ password D3b_Swtch_K0nZol
+ login
+ exec-timeout 5 0
+ logging synchronous
+exit
+line vty 0 15
+ password D3bVtyT3ln3tp455wrd
+ login
+ exec-timeout 5 0
+ logging synchronous
+ transport input ssh
+exit
+exit
+wr
+
+
+
+6. Budapest Elsődleges Router (BP-RT)
+
+enable
+conf t
+hostname BP-RT
+no ip domain-lookup
+ip domain-name horizonbank.hu
+banner motd # Az illetektelen hozzaferes TILOS! #
+security passwords min-length 8
+clock timezone CET 1
+service password-encryption
+enable secret BproUteR_Pr1viL3G
+line con 0
+ password BPRtK0nz0l5732
+ login
+ exec-timeout 5 0
+ logging synchronous
+exit
+line vty 0 4
+ password BP_Rt_Vty_T3l
+ login
+ exec-timeout 5 0
+ logging synchronous
+ transport input ssh
+exit
+exit
+wr
+
+
+7. Budapest Másodlagos Router (BP-RT2)
+
+enable
+conf t
+hostname BP-RT2
+no ip domain-lookup
+ip domain-name horizonbank.hu
+banner motd # Az illetektelen hozzaferes TILOS! #
+security passwords min-length 8
+clock timezone CET 1
+service password-encryption
+enable secret BP_Rt2Pr1v
+line con 0
+ password BaPt_RteR2_KoNjel
+ login
+ exec-timeout 5 0
+ logging synchronous
+exit
+line vty 0 4
+ password Rt2Vty_TeLN3t
+ login
+ exec-timeout 5 0
+ logging synchronous
+ transport input ssh
+exit
+exit 
+wr
+
+
+8. Debrecen Helyi Router (DEB-RT)
+
+enable
+conf t
+hostname DEB-RT
+no ip domain-lookup
+ip domain-name horizonbank.hu
+banner motd # Az illetektelen hozzaferes TILOS! #
+security passwords min-length 8
+clock timezone CET 1
+service password-encryption
+enable secret D3b_Rt_Pr1v
+line con 0
+ password D3b_Rt_K0nz0l
+ login
+ exec-timeout 5 0
+ logging synchronous
+exit
+line vty 0 4
+ password D3b_Rt_Vty_T3l
+ login
+ exec-timeout 5 0
+ logging synchronous
+ transport input ssh
+exit
+exit
+wr
