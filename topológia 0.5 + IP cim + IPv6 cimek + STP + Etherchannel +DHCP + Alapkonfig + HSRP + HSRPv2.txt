@@ -1,0 +1,38 @@
+BP-RT2 standby
+
+
+
+
+interface FastEthernet0/0.10
+ standby version 2
+ standby 10 ip 192.168.1.30
+ standby 10 ipv6 autoconfig
+ standby 10 priority 100
+!
+interface FastEthernet0/0.20
+ standby version 2
+ standby 20 ip 192.168.1.62
+ standby 20 ipv6 autoconfig
+ standby 20 priority 100
+
+
+
+BP-RT active
+
+
+
+
+
+interface FastEthernet0/1.10
+ standby version 2
+ standby 10 ip 192.168.1.30
+ standby 10 ipv6 autoconfig
+ standby 10 priority 110
+ standby 10 preempt
+!
+interface FastEthernet0/1.20
+ standby version 2
+ standby 20 ip 192.168.1.62
+ standby 20 ipv6 autoconfig
+ standby 20 priority 110
+ standby 20 preempt
