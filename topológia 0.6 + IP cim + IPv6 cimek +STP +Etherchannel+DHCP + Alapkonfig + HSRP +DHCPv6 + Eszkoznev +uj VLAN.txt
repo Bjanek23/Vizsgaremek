@@ -1,0 +1,429 @@
+DOLG-SW
+
+
+
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+service password-encryption
+!
+hostname DOLG-SW
+!
+enable secret 5 $1$mERr$4sQaZg8gZWvXUt4hXKENY1
+!
+!
+!
+clock timezone CET 1
+!
+no ip domain-lookup
+ip domain-name horizonbank.hu
+!
+!
+!
+spanning-tree mode rapid-pvst
+spanning-tree extend system-id
+!
+interface Port-channel1
+ switchport trunk allowed vlan 10,20,30,100
+ switchport mode trunk
+!
+interface Port-channel2
+ switchport trunk allowed vlan 10,20,30,100
+ switchport mode trunk
+!
+interface FastEthernet0/1
+ switchport trunk allowed vlan 10,20,30,100
+ switchport mode trunk
+ channel-group 2 mode active
+!
+interface FastEthernet0/2
+ switchport trunk allowed vlan 10,20,30,100
+ switchport mode trunk
+ channel-group 2 mode active
+!
+interface FastEthernet0/3
+ switchport trunk allowed vlan 10,20,30,100
+ switchport mode trunk
+ channel-group 1 mode passive
+!
+interface FastEthernet0/4
+ switchport trunk allowed vlan 10,20,30,100
+ switchport mode trunk
+ channel-group 1 mode passive
+!
+interface FastEthernet0/5
+!
+interface FastEthernet0/6
+!
+interface FastEthernet0/7
+ switchport access vlan 20
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/8
+ switchport access vlan 20
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/9
+ switchport access vlan 20
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/10
+ switchport access vlan 10
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/11
+!
+interface FastEthernet0/12
+!
+interface FastEthernet0/13
+!
+interface FastEthernet0/14
+!
+interface FastEthernet0/15
+!
+interface FastEthernet0/16
+!
+interface FastEthernet0/17
+!
+interface FastEthernet0/18
+!
+interface FastEthernet0/19
+!
+interface FastEthernet0/20
+!
+interface FastEthernet0/21
+!
+interface FastEthernet0/22
+!
+interface FastEthernet0/23
+!
+interface FastEthernet0/24
+!
+interface GigabitEthernet0/1
+!
+interface GigabitEthernet0/2
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+banner motd ^C Az illetektelen hozzaferes TILOS! ^C
+!
+!
+!
+line con 0
+ password 7 082543620E491F471B205C0A2078287D29
+ logging synchronous
+ login
+ exec-timeout 5 0
+!
+line vty 0 4
+ exec-timeout 5 0
+ password 7 08051C420E2F110E2658000A793F147C666015
+ logging synchronous
+ login
+ transport input ssh
+line vty 5 15
+ exec-timeout 5 0
+ password 7 08051C420E2F110E2658000A793F147C666015
+ logging synchronous
+ login
+ transport input ssh
+!
+!
+!
+!
+end
+
+
+
+
+KNYV-SW
+
+
+
+
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+service password-encryption
+!
+hostname KNYV-SW
+!
+enable secret 5 $1$mERr$L/SRVeUhrXMktV.USsfWe0
+!
+!
+!
+clock timezone CET 1
+!
+no ip domain-lookup
+ip domain-name horizonbank.hu
+!
+!
+!
+spanning-tree mode rapid-pvst
+spanning-tree extend system-id
+!
+interface Port-channel2
+ switchport trunk allowed vlan 10,20,30,100
+ switchport mode trunk
+!
+interface Port-channel3
+ switchport trunk allowed vlan 10,20,30,100
+ switchport mode trunk
+!
+interface FastEthernet0/1
+ switchport trunk allowed vlan 10,20,30,100
+ switchport mode trunk
+ channel-group 2 mode passive
+!
+interface FastEthernet0/2
+ switchport trunk allowed vlan 10,20,30,100
+ switchport mode trunk
+ channel-group 2 mode passive
+!
+interface FastEthernet0/3
+!
+interface FastEthernet0/4
+!
+interface FastEthernet0/5
+ switchport trunk allowed vlan 10,20,30,100
+ switchport mode trunk
+ channel-group 3 mode active
+!
+interface FastEthernet0/6
+ switchport trunk allowed vlan 10,20,30,100
+ switchport mode trunk
+ channel-group 3 mode active
+!
+interface FastEthernet0/7
+ switchport access vlan 20
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/8
+ switchport access vlan 10
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/9
+ switchport access vlan 10
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/10
+ switchport access vlan 10
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/11
+!
+interface FastEthernet0/12
+!
+interface FastEthernet0/13
+!
+interface FastEthernet0/14
+!
+interface FastEthernet0/15
+!
+interface FastEthernet0/16
+!
+interface FastEthernet0/17
+!
+interface FastEthernet0/18
+!
+interface FastEthernet0/19
+!
+interface FastEthernet0/20
+!
+interface FastEthernet0/21
+!
+interface FastEthernet0/22
+!
+interface FastEthernet0/23
+!
+interface FastEthernet0/24
+!
+interface GigabitEthernet0/1
+!
+interface GigabitEthernet0/2
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+banner motd ^C Az illetektelen hozzaferes TILOS! ^C
+!
+!
+!
+line con 0
+ password 7 080A1C40100F561B17182A570603701B09
+ logging synchronous
+ login
+ exec-timeout 5 0
+!
+line vty 0 4
+ exec-timeout 5 0
+ password 7 080A1C40300F561B260E002A791F
+ logging synchronous
+ login
+ transport input ssh
+line vty 5 15
+ exec-timeout 5 0
+ password 7 080A1C40300F561B260E002A791F
+ logging synchronous
+ login
+ transport input ssh
+!
+!
+!
+!
+end
+
+
+
+
+BP-SW
+
+
+
+
+
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+service password-encryption
+!
+hostname BP-SW
+!
+enable secret 5 $1$mERr$lSWvxesqZ5vL2jCry9lyA1
+!
+!
+!
+clock timezone CET 1
+!
+no ip domain-lookup
+ip domain-name horizonbank.hu
+!
+!
+!
+spanning-tree mode rapid-pvst
+spanning-tree extend system-id
+spanning-tree vlan 10,20,30,100 priority 4096
+!
+interface Port-channel1
+ switchport trunk allowed vlan 10,20,30,100
+ switchport mode trunk
+!
+interface Port-channel3
+ switchport trunk allowed vlan 10,20,30,100
+ switchport mode trunk
+!
+interface FastEthernet0/1
+ switchport trunk allowed vlan 10,20,30,100
+ switchport mode trunk
+!
+interface FastEthernet0/2
+ switchport trunk allowed vlan 10,20,30,100
+ switchport mode trunk
+!
+interface FastEthernet0/3
+ switchport trunk allowed vlan 10,20,30,100
+ switchport mode trunk
+ channel-group 1 mode active
+!
+interface FastEthernet0/4
+ switchport trunk allowed vlan 10,20,30,100
+ switchport mode trunk
+ channel-group 1 mode active
+!
+interface FastEthernet0/5
+ switchport trunk allowed vlan 10,20,30,100
+ switchport mode trunk
+ channel-group 3 mode passive
+!
+interface FastEthernet0/6
+ switchport trunk allowed vlan 10,20,30,100
+ switchport mode trunk
+ channel-group 3 mode passive
+!
+interface FastEthernet0/7
+!
+interface FastEthernet0/8
+!
+interface FastEthernet0/9
+!
+interface FastEthernet0/10
+!
+interface FastEthernet0/11
+!
+interface FastEthernet0/12
+!
+interface FastEthernet0/13
+!
+interface FastEthernet0/14
+!
+interface FastEthernet0/15
+!
+interface FastEthernet0/16
+!
+interface FastEthernet0/17
+!
+interface FastEthernet0/18
+!
+interface FastEthernet0/19
+!
+interface FastEthernet0/20
+!
+interface FastEthernet0/21
+!
+interface FastEthernet0/22
+!
+interface FastEthernet0/23
+!
+interface FastEthernet0/24
+!
+interface GigabitEthernet0/1
+!
+interface GigabitEthernet0/2
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+banner motd ^C Az illetektelen hozzaferes TILOS! ^C
+!
+!
+!
+line con 0
+ password 7 08037C7D1E4811140134075404317404
+ logging synchronous
+ login
+ exec-timeout 5 0
+!
+line vty 0 4
+ exec-timeout 5 0
+ password 7 08035C4B5C0D33032B3438572625
+ logging synchronous
+ login
+ transport input ssh
+line vty 5 15
+ exec-timeout 5 0
+ password 7 08035C4B5C0D33032B3438572625
+ logging synchronous
+ login
+ transport input ssh
+!
+!
+!
+!
+end
