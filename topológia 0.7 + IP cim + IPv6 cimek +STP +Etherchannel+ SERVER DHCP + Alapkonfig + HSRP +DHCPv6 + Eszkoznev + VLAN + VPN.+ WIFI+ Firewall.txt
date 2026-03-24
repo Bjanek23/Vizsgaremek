@@ -1,0 +1,107 @@
+tűzfal:
+
+
+
+hostname IGT-TF
+domain-name wr
+enable password Vy0wEO5/w193Aqbp encrypted
+names
+!
+interface GigabitEthernet1/1
+ nameif OUTSIDE
+ security-level 0
+ ip address 200.200.200.2 255.255.255.248
+!
+interface GigabitEthernet1/2
+ nameif INSIDE
+ security-level 100
+ ip address 192.168.1.65 255.255.255.240
+!
+interface GigabitEthernet1/3
+ no nameif
+ no security-level
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/4
+ no nameif
+ no security-level
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/5
+ no nameif
+ no security-level
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/6
+ no nameif
+ no security-level
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/7
+ no nameif
+ no security-level
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/8
+ no nameif
+ no security-level
+ no ip address
+ shutdown
+!
+interface Management1/1
+ management-only
+ no nameif
+ no security-level
+ no ip address
+ shutdown
+!
+!
+!
+access-list VPNLIST extended permit ip 192.168.1.64 255.255.255.240 192.168.2.0 255.255.255.192
+!
+!
+aaa authentication ssh console LOCAL
+!
+username admin password 3bl4Ll3beGamEvh4 encrypted
+!
+class-map inspection_default
+ match default-inspection-traffic
+!
+policy-map type inspect dns preset_dns_map
+ parameters
+  message-length maximum 512
+policy-map global_policy
+ class inspection_default
+  inspect dns preset_dns_map
+  inspect ftp 
+  inspect tftp 
+!
+service-policy global_policy global
+!
+telnet timeout 5
+ssh 192.168.1.64 255.255.255.240 INSIDE
+ssh timeout 3
+!
+!
+crypto ipsec ikev1 transform-set BP-DEB esp-aes 256 esp-sha-hmac
+!
+crypto map HORIZONMAP 1 match address VPNLIST
+crypto map HORIZONMAP 1 set peer 203.113.0.10 
+crypto map HORIZONMAP 1 set ikev1 transform-set BP-DEB 
+crypto map HORIZONMAP interface OUTSIDE
+crypto ikev1 enable OUTSIDE
+crypto ikev1 policy 10
+ encr aes
+ authentication pre-share
+ group 5
+ lifetime 1800
+!
+tunnel-group 203.0.113.10 type ipsec-l2l
+tunnel-group 203.0.113.10 ipsec-attributes
+ ikev1 pre-shared-key HORIZONKULCS
+!
