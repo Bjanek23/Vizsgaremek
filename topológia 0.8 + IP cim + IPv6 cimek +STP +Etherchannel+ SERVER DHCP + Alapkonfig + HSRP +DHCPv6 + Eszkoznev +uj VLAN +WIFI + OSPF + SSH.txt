@@ -1,0 +1,734 @@
+BP-RT
+
+
+
+
+
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+service password-encryption
+security passwords min-length 8
+!
+hostname BP-RT
+!
+!
+!
+enable secret 5 $1$mERr$r4GaONU0/xJ.8eITME7tY.
+!
+!
+!
+clock timezone CET 1
+!
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+!
+!
+!
+license udi pid CISCO2811/K9 sn FTX10179WL1-
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain-lookup
+ip domain-name horizonbank.hu
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ ip address 200.200.200.1 255.255.255.248
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/1
+ no ip address
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/1.10
+ encapsulation dot1Q 10
+ ip address 192.168.1.1 255.255.255.224
+ ip helper-address 192.168.1.3
+ standby 10 ip 192.168.1.30
+ standby 10 priority 110
+ standby 10 preempt
+!
+interface FastEthernet0/1.20
+ encapsulation dot1Q 20
+ ip address 192.168.1.33 255.255.255.224
+ ip helper-address 192.168.1.3
+ standby 20 ip 192.168.1.62
+ standby 20 priority 110
+ standby 20 preempt
+!
+interface Serial0/0/0
+ ip address 203.0.113.2 255.255.255.252
+!
+interface Serial0/0/1
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Serial0/1/0
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Serial0/1/1
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+router ospf 1
+ router-id 1.1.1.1
+ log-adjacency-changes
+ network 200.200.200.0 0.0.0.7 area 0
+ network 192.168.1.0 0.0.0.31 area 0
+ network 192.168.1.32 0.0.0.31 area 0
+ network 203.0.113.0 0.0.0.3 area 0
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+banner motd ^C Az illetektelen hozzaferes TILOS! ^C
+!
+!
+!
+!
+line con 0
+ exec-timeout 5 0
+ password 7 08037C7C1D325519085B00517D7876
+ logging synchronous
+ login
+!
+line aux 0
+!
+line vty 0 4
+ exec-timeout 5 0
+ password 7 08037C713B0D3A21061233307927
+ logging synchronous
+ login
+ transport input ssh
+!
+!
+!
+end
+
+
+
+
+
+IGT-TF
+
+
+hostname IGT-TF
+enable password Vy0wEO5/w193Aqbp encrypted
+names
+!
+interface GigabitEthernet1/1
+ nameif outside
+ security-level 0
+ ip address 200.200.200.2 255.255.255.248
+!
+interface GigabitEthernet1/2
+ nameif inside
+ security-level 100
+ ip address 192.168.1.65 255.255.255.240
+!
+interface GigabitEthernet1/3
+ no nameif
+ no security-level
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/4
+ no nameif
+ no security-level
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/5
+ no nameif
+ no security-level
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/6
+ no nameif
+ no security-level
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/7
+ no nameif
+ no security-level
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/8
+ no nameif
+ no security-level
+ no ip address
+ shutdown
+!
+interface Management1/1
+ management-only
+ no nameif
+ no security-level
+ no ip address
+ shutdown
+!
+!
+!
+access-list PERMIT extended permit ip 192.168.2.0 255.255.255.224 192.168.1.64 255.255.255.240
+access-list PERMIT extended permit ip 192.168.1.32 255.255.255.224 192.168.1.64 255.255.255.240
+!
+!
+access-group PERMIT out interface inside
+aaa authentication ssh console LOCAL
+!
+username admin password 3bl4Ll3beGamEvh4 encrypted
+!
+class-map inspection_default
+ match default-inspection-traffic
+!
+policy-map type inspect dns preset_dns_map
+ parameters
+  message-length maximum 512
+policy-map global_policy
+ class inspection_default
+  inspect dns preset_dns_map
+  inspect ftp 
+  inspect tftp 
+!
+service-policy global_policy global
+!
+telnet timeout 5
+ssh 192.168.1.64 255.255.255.240 inside
+ssh timeout 3
+!
+!
+!
+!
+router ospf 1
+ router-id 5.5.5.5
+ log-adjacency-changes
+ network 192.168.1.64 255.255.255.240 area 0
+ network 200.200.200.0 255.255.255.248 area 0
+!hostname IGT-TF
+enable password Vy0wEO5/w193Aqbp encrypted
+names
+!
+interface GigabitEthernet1/1
+ nameif outside
+ security-level 0
+ ip address 200.200.200.2 255.255.255.248
+!
+interface GigabitEthernet1/2
+ nameif inside
+ security-level 100
+ ip address 192.168.1.65 255.255.255.240
+!
+interface GigabitEthernet1/3
+ no nameif
+ no security-level
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/4
+ no nameif
+ no security-level
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/5
+ no nameif
+ no security-level
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/6
+ no nameif
+ no security-level
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/7
+ no nameif
+ no security-level
+ no ip address
+ shutdown
+!
+interface GigabitEthernet1/8
+ no nameif
+ no security-level
+ no ip address
+ shutdown
+!
+interface Management1/1
+ management-only
+ no nameif
+ no security-level
+ no ip address
+ shutdown
+!
+!
+!
+access-list PERMIT extended permit ip 192.168.2.0 255.255.255.224 192.168.1.64 255.255.255.240
+access-list PERMIT extended permit ip 192.168.1.32 255.255.255.224 192.168.1.64 255.255.255.240
+!
+!
+access-group PERMIT out interface inside
+aaa authentication ssh console LOCAL
+!
+username admin password 3bl4Ll3beGamEvh4 encrypted
+!
+class-map inspection_default
+ match default-inspection-traffic
+!
+policy-map type inspect dns preset_dns_map
+ parameters
+  message-length maximum 512
+policy-map global_policy
+ class inspection_default
+  inspect dns preset_dns_map
+  inspect ftp 
+  inspect tftp 
+!
+service-policy global_policy global
+!
+telnet timeout 5
+ssh 192.168.1.64 255.255.255.240 inside
+ssh timeout 3
+!
+!
+!
+!
+router ospf 1
+ router-id 5.5.5.5
+ log-adjacency-changes
+ network 192.168.1.64 255.255.255.240 area 0
+ network 200.200.200.0 255.255.255.248 area 0
+!
+
+
+
+
+
+BP-RT2
+
+
+
+
+
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+service password-encryption
+security passwords min-length 8
+!
+hostname BP-RT2
+!
+!
+!
+enable secret 5 $1$mERr$5tYBF.2T1TOuv..KvRLrk1
+!
+!
+!
+clock timezone CET 1
+!
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+!
+!
+!
+license udi pid CISCO2811/K9 sn FTX10172V33-
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain-lookup
+ip domain-name horizonbank.hu
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ no ip address
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/0.10
+ encapsulation dot1Q 10
+ ip address 192.168.1.2 255.255.255.224
+ standby 10 ip 192.168.1.30
+!
+interface FastEthernet0/0.20
+ encapsulation dot1Q 20
+ ip address 192.168.1.34 255.255.255.224
+ standby 20 ip 192.168.1.62
+!
+interface FastEthernet0/1
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface Serial0/0/0
+ ip address 203.0.113.6 255.255.255.252
+!
+interface Serial0/0/1
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Serial0/1/0
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Serial0/1/1
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+router ospf 1
+ router-id 2.2.2.2
+ log-adjacency-changes
+ network 192.168.1.32 0.0.0.31 area 0
+ network 192.168.1.0 0.0.0.31 area 0
+ network 203.0.113.4 0.0.0.3 area 0
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+banner motd ^C Az illetektelen hozzaferes TILOS! ^C
+!
+!
+!
+!
+line con 0
+ exec-timeout 5 0
+ password 7 08034D7E1D26370317395E3B01240A223639
+ logging synchronous
+ login
+!
+line aux 0
+!
+line vty 0 4
+ exec-timeout 5 0
+ password 7 0813581C3F0D1C28260E202A793F
+ logging synchronous
+ login
+ transport input ssh
+!
+!
+!
+end
+
+
+
+
+ISP
+
+
+
+
+
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname ISP
+!
+!
+!
+!
+!
+!
+!
+!
+no ip cef
+no ipv6 cef
+!
+!
+!
+!
+license udi pid CISCO2811/K9 sn FTX10174AHE-
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ no ip address
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/1
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface Serial0/0/0
+ ip address 203.0.113.1 255.255.255.252
+ clock rate 2000000
+!
+interface Serial0/0/1
+ ip address 203.0.113.5 255.255.255.252
+ clock rate 2000000
+!
+interface Serial0/1/0
+ ip address 203.0.113.9 255.255.255.252
+ clock rate 2000000
+!
+interface Serial0/1/1
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Serial0/2/0
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Serial0/2/1
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Serial0/3/0
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Serial0/3/1
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+router ospf 1
+ router-id 3.3.3.3
+ log-adjacency-changes
+ network 203.0.113.0 0.0.0.3 area 0
+ network 203.0.113.4 0.0.0.3 area 0
+ network 203.0.113.8 0.0.0.3 area 0
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
+
+
+
+
+DEB-RT
+
+
+
+
+
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+service password-encryption
+security passwords min-length 8
+!
+hostname DEB-RT
+!
+!
+!
+enable secret 5 $1$mERr$vMcrBN/DfPzNMx8ZDobeB0
+!
+!
+!
+clock timezone CET 1
+!
+!
+!
+!
+ip cef
+ipv6 unicast-routing
+!
+no ipv6 cef
+!
+!
+!
+!
+license udi pid CISCO2811/K9 sn FTX1017J63X-
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain-lookup
+ip domain-name horizonbank.hu
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ ip address 192.168.2.1 255.255.255.192
+ duplex auto
+ speed auto
+ ipv6 address FE80::4 link-local
+ ipv6 address 2001:DB8:ACAD:40::1/64
+!
+interface FastEthernet0/1
+ ip address 110.110.110.1 255.255.255.248
+ duplex auto
+ speed auto
+!
+interface Serial0/0/0
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Serial0/0/1
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Serial0/1/0
+ ip address 203.0.113.10 255.255.255.252
+!
+interface Serial0/1/1
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+router ospf 1
+ router-id 4.4.4.4
+ log-adjacency-changes
+ network 192.168.2.0 0.0.0.63 area 0
+ network 203.0.113.8 0.0.0.3 area 0
+ network 110.110.110.0 0.0.0.7 area 0
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+banner motd ^C Az illetektelen hozzaferes TILOS! ^C
+!
+!
+!
+!
+line con 0
+ exec-timeout 5 0
+ password 7 08051F4C362B1128395B021E7A27
+ logging synchronous
+ login
+!
+line aux 0
+!
+line vty 0 4
+ exec-timeout 5 0
+ password 7 08051F4C362B1128241F153B1E7828
+ logging synchronous
+ login
+ transport input ssh
+!
+!
+!
+end
+
+
+
+
