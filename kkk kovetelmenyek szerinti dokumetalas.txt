@@ -1,0 +1,11 @@
+A dokumentum margója 2,5 cm-es legyen minden oldalon. A megadott margón kívül táblázat, kép ne kerüljön!
+A szöveg betű típusa: Calibri vagy Times New Roman lehet, a betűméret 12-es.
+A cím 16 betű méretű, félkövér. Előtte 24, utána 12 térköz.
+A bekezdés formázása sorkizárt, másfeles sorköz, térköz előtte és utána nincs. A bekezdés első sorának behúzása 1 centiméter.
+A szöveg tartalmi kiemelései (bekezdések címei, fontosabb adatok) egyéb módon is formázhatók (kövérítés, dőlt szedés stb.)
+A projektdokumentációban használt képek számozott képaláírással legyenek ellátva. Cím és forrásmegjelölés kerüljön feltüntetésre minden kép esetében.
+1.1       A vizsgaremek tartalma
+A vizsgaremek fedőlappal (1. számú melléklet) kezdődik, amelyet a nyilatkozatok (2. számú melléklet), majd a tartalomjegyzék követ.
+A projekt tartalmazhat idézeteket, képeket, grafikonokat, ábrákat is, a pontos forrás megjelenítésével.
+A valós, vagy elképzelt vállalat hálózatának működő prototípusát, gyakorlati kivitelezését, valamint a prototípus működésének, tesztelésének dokumentálását egy 2-5 perc hosszúságú videóval is szükséges bemutatni. A dokumentum végén található összegző értékelés zárásaként a vizsgázó a tartalom elérhetőségének linkjét adja meg, szükség esetén az eléréshez szükséges felhasználónevet és jelszót. A vizsgázó figyeljen arra, hogy a projekt leadása és az értékelés között 60 nap is eltelhet, ezért olyan linket adjon meg, amelyik hosszabb idő eltelte után is hozzáférhető.
+Szakirodalmi hivatkozások: A hivatkozásokat, forrásokat a jelölt minden esetben tüntesse fel az aktuális dokumentum végén. Mindenképpen kerüljön feltüntetésre a szerző(k) neve, a mű címe, a mű kiadója, a kiadás éve és az idézet oldalszáma. Bármelyik használatos idézési/forrásmegjelölési formátum elfogadható a jelölttől a projektben, amennyiben a fenti adatokat tartalmazza. Fontos, hogy egyféle forrásmegjelenítési formátum kerüljön alkalmazásra egy projekten belül.
